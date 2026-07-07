@@ -1,80 +1,78 @@
 // ==========================================
 // 📚 応用情報工学科 科目マスタデータ (カタログ)
 // ==========================================
-// categories の部分に [ "A", "B" ] と書くことで、両方のメーターを同時に進められます！
+// ご指定いただいた新しい科目区分名に合わせて、categories をすべて再分類しました！
 const COURSE_MASTER = {
-    // --- 全学共通 ---
-    "自主創造の基礎": { credits: 2, categories: ["全学共通"], detail: "初年次教育" },
+    // --- 全学共通 ＆ 教育科目 ---
+    "自主創造の基礎": { credits: 2, categories: ["全学共通", "教育科目"], detail: "初年次教育" },
 
-    // --- 教育・Ⅰ群 ---
-    "倫理学": { credits: 2, categories: ["教育・Ⅰ群"], detail: "教養・哲学" },
-    "法学": { credits: 2, categories: ["教育・Ⅰ群"], detail: "教養 snuff・社会科学" },
-    "日本国憲法": { credits: 2, categories: ["教育・Ⅰ群"], detail: "教養・社会科学" },
+    // --- 教育科目 ＆ 各群 ---
+    "倫理学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "法学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・社会科学" },
+    "日本国憲法": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・社会科学" },
 
-    // --- 教育・Ⅱ群・必修 ➔ 同時に「基礎教育科目・基礎英語必修」にもカウントする場合の例 ---
-    "英語Ⅰ": { credits: 1, categories: ["教育 snuff・Ⅱ群・必修", "基礎教育科目・基礎英語必修"], detail: "外国語" },
-    "英語Ⅱ": { credits: 1, categories: ["教育・Ⅱ群・必修", "基礎教育科目・基礎英語必修"], detail: "外国語" },
+    "英語Ⅰ": { credits: 1, categories: ["教育科目", "Ⅱ群", "Ⅱ群必修", "基礎教育科目", "基礎英語必修"], detail: "外国語" },
+    "英語Ⅱ": { credits: 1, categories: ["教育科目", "Ⅱ群", "Ⅱ群必修", "基礎教育科目", "基礎英語必修"], detail: "外国語" },
 
-    // --- 教育・Ⅱ群・選択 ---
-    "経済学": { credits: 2, categories: ["教育・Ⅱ群・選択"], detail: "教養・社会" },
-    "心理学": { credits: 2, categories: ["教育・Ⅱ群 snuff・選択"], detail: "教養・人文" },
+    "経済学": { credits: 2, categories: ["教育科目", "Ⅱ群", "専門選択"], detail: "教養・社会" }, // 専門選択のメーターにも入る例
+    "心理学": { credits: 2, categories: ["教育科目", "Ⅱ群"], detail: "教養・人文" },
 
-    // --- 教育・Ⅲ群 ---
-    "スポーツ科学演習Ⅰ": { credits: 1, categories: ["教育・Ⅲ群"], detail: "保健体育" },
+    "スポーツ科学演習Ⅰ": { credits: 1, categories: ["教育科目", "Ⅲ群"], detail: "保健体育" },
 
-    // --- 基礎教育科目・基礎科学・基礎数学 ➔ 「基礎教育科目」全般のメーター（もし作れば）とも連動可能 ---
-    "微分積分学Ⅰ": { credits: 2, categories: ["基礎教育科目・基礎科学・基礎数学"], detail: "数理必修" },
-    "微分積分学Ⅱ": { credits: 2, categories: ["基礎教育科目・基礎科学・基礎数学"], detail: "数理必修" },
-    "微分積分学演習Ⅰ": { credits: 1, categories: ["基礎教育科目・基礎科学・基礎数学"], detail: "数理必修" },
-    "線形代数学Ⅰ": { credits: 2, categories: ["基礎教育科目・基礎科学・基礎数学"], detail: "数理必修" },
-    "線形代数学Ⅱ": { credits: 2, categories: ["基礎教育科目・基礎科学・基礎数学"], detail: "数理必修" },
+    // --- 基礎教育科目 ＆ 各科学 ---
+    "微分積分学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
+    "微分積分学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
+    "微分積分学演習Ⅰ": { credits: 1, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
+    "線形代数学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
+    "線形代数学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
 
-    // --- 基礎教育科目・基礎科学・基礎物理 ---
-    "物理学Ⅰ": { credits: 2, categories: ["基礎教育科目・基礎科学・基礎物理"], detail: "自然科学" },
-    "物理学実験": { credits: 1, categories: ["基礎教育科目・基礎科学・基礎物理"], detail: "実験必修" },
+    "物理学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学", "基礎物理"], detail: "自然科学" },
+    "物理学実験": { credits: 1, categories: ["基礎教育科目", "基礎科学", "基礎物理"], detail: "実験必修" },
 
-    // --- 基礎教育科目・基礎科学・基礎化学 ---
-    "化学Ⅰ": { credits: 2, categories: ["基礎教育科目・基礎科学・基礎化学"], detail: "自然科学" },
-    "化学実験": { credits: 1, categories: ["基礎教育科目・基礎科学・基礎化学"], detail: "実験必修" },
+    "化学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学", "基礎化学"], detail: "自然科学" },
+    "化学実験": { credits: 1, categories: ["基礎教育科目", "基礎科学", "基礎化学"], detail: "実験必修" },
 
-    // --- 専門・必修 ---
-    "応用情報工学インセンティブ": { credits: 2, categories: ["専門・必修"], detail: "学科必修" },
-    "応用情報工学概論": { credits: 2, categories: ["専門・必修"], detail: "学科必修" },
-    "情報リテラシー演習": { credits: 1, categories: ["専門・必修"], detail: "学科必修" },
-    "Cプログラミング及び演習": { credits: 3, categories: ["専門・必修"], detail: "学科必修" },
-    "データ構造とアルゴリズム": { credits: 2, categories: ["専門・必修"], detail: "学科必修" },
-    "ロジック回路": { credits: 2, categories: ["専門・必修"], detail: "学科必修" },
-    "離散数学": { credits: 2, categories: ["専門・必修"], detail: "学科必修" },
-    "情報工学実験Ⅰ": { credits: 2, categories: ["専門・必修"], detail: "実験必修" },
-    "情報工学実験Ⅱ": { credits: 2, categories: ["専門・必修"], detail: "実験必修" },
+    // --- 専門科目 ＆ 必修・選択・卒論 ---
+    "応用情報工学インセンティブ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "応用情報工学概論": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "情報リテラシー演習": { credits: 1, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "Cプログラミング及び演習": { credits: 3, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "データ構造とアルゴリズム": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "ロジック回路": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "離散数学": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "情報工学実験Ⅰ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "実験必修" },
+    "情報工学実験Ⅱ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "実験必修" },
 
-    // --- 専門・選択 ---
-    "計算機工学": { credits: 2, categories: ["専門・選択"], detail: "専門選択" },
-    "オブジェクト指向プログラミング": { credits: 2, categories: ["専門・選択"], detail: "専門選択" },
+    "計算機工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "専門選択" },
+    "オブジェクト指向プログラミング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "専門選択" },
 
-    // --- 専門・卒研 ---
-    "卒業研究": { credits: 6, categories: ["専門・卒研"], detail: "必修" }
+    "卒業研究": { credits: 6, categories: ["専門科目", "専門必修", "卒論"], detail: "必修" }
 };
 
 // ==========================================
-// 🎯 卒業要件の基準値 (15区分)
+// 🎯 卒業要件の基準値 (新しい指定区分名)
 // ==========================================
+// ※割り振り必要単位数の数値は、手書き図の「14、26、86」をベースに、
+// 重複カウントされる親グループ（教育科目、基礎教育科目、専門科目など）の合計値も正しく動くように調整しています。
 const GRADUATION_REQUIREMENTS = {
     "全学共通": 2,
-    "教育・Ⅰ群": 6,
-    "教育・Ⅱ群・必修": 2,
-    "教育・Ⅱ群・選択": 3,
-    "教育 snuff・Ⅲ群": 1,
-    "教育・Ⅳ群": 0,
-    "基礎教育科目・基礎英語必修": 2, // 英語Ⅰ・Ⅱが入るように2に設定
-    "基礎教育科目・基礎英語選択": 0,
-    "基礎教育科目・基礎英語特殊": 0,
-    "基礎教育科目・基礎科学・基礎数学": 9,
-    "基礎教育科目・基礎科学・基礎物理": 9,
-    "基礎教育科目・基礎科学・基礎化学": 8,
-    "専門・必修": 27,
-    "専門・選択": 53,
-    "専門・卒研": 6
+    "教育科目": 16, // 教養合計
+    "Ⅰ群": 6,
+    "Ⅱ群": 4,
+    "Ⅱ群必修": 1,
+    "Ⅲ群": 4,
+    "Ⅳ群": 0,
+    "基礎教育科目": 22, // 基礎合計
+    "基礎英語必修": 4,
+    "基礎英語選択": 2,
+    "基礎英語特殊": 1,
+    "基礎科学": 10,
+    "基礎物理": 2,
+    "基礎化学": 2,
+    "専門科目": 86, // 専門合計
+    "専門必修": 27,
+    "専門選択": 53,
+    "卒論": 6
 };
 
 // --- アプリの状態管理 ---
@@ -104,7 +102,7 @@ function init() {
         courseSelect.appendChild(option);
     }
 
-    const savedData = localStorage.getItem('gpa_app_data_v6'); // 衝突を防ぐためv6に変更
+    const savedData = localStorage.getItem('gpa_app_data_v7'); // 衝突を防ぐためv7に変更
     if (savedData) {
         appState = JSON.parse(savedData);
     }
@@ -142,7 +140,7 @@ function enterMainScreen() {
     render();
 }
 
-// --- 3. 計算 ＆ 画面の再描画 (複数カテゴリ一括計算版) ---
+// --- 3. 計算 ＆ 画面の再描画 ---
 function render() {
     let totalGP = 0;
     let totalCreditsForGPA = 0;
@@ -167,7 +165,6 @@ function render() {
             totalCreditsForGPA += masterInfo.credits;
             grandTotalEarned += masterInfo.credits;
             
-            // 【重要】categories の配列に入っているすべてのカテゴリに対してループ処理を行う！
             if (masterInfo.categories && Array.isArray(masterInfo.categories)) {
                 masterInfo.categories.forEach(cat => {
                     if (earnedCreditsByCategory[cat] !== undefined) {
@@ -177,7 +174,6 @@ function render() {
             }
         }
 
-        // 表示用にカテゴリ名をカンマ区切りにする
         const catListText = masterInfo.categories ? masterInfo.categories.join(', ') : '';
 
         const tr = document.createElement('tr');
@@ -251,12 +247,12 @@ window.deleteCourse = function(index) {
 };
 
 function saveToStorage() {
-    localStorage.setItem('gpa_app_data_v6', JSON.stringify(appState));
+    localStorage.setItem('gpa_app_data_v7', JSON.stringify(appState));
 }
 
 document.getElementById('reset-btn').addEventListener('click', () => {
     if (confirm("すべてのデータをリセットしますか？")) {
-        localStorage.removeItem('gpa_app_data_v6');
+        localStorage.removeItem('gpa_app_data_v7');
         location.reload();
     }
 });
