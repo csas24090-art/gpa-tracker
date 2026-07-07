@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人成績確認アプリ</title>
+    <title>個人成績確認アプリ（応用情報工学科版）</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
         <h1>📊 個人成績確認アプリ</h1>
+        <p style="text-align: center; color: #666; font-size: 13px; margin-top: -10px;">応用情報工学科 卒業判定対応</p>
 
         <div id="password-screen" class="hidden">
             <h3 id="pwd-title">パスワードを設定してください</h3>
@@ -18,33 +19,38 @@
         </div>
 
         <div id="main-screen" class="hidden">
-            <div class="card">
-                <h3>🎯 必要単位数の設定</h3>
-                <label>必要（目標）単位数: </label>
-                <input type="number" id="req-credits-input" value="124" min="0" style="width: 60px;">
-            </div>
 
             <div class="card">
                 <h3>✍️ 成績の追加</h3>
-                <div class="form-group">
-                    <input type="text" id="course-name" placeholder="授業名（例：英語I）">
-                    <input type="number" id="course-credits" placeholder="単位数" min="1" max="10" style="width: 70px;">
-                    <select id="course-grade">
-                        <option value="S">S (4点)</option>
-                        <option value="A">A (3点)</option>
-                        <option value="B">B (2点)</option>
-                        <option value="C">C (1点)</option>
-                        <option value="D">D (0点・落単)</option>
-                        <option value="E">E (0点・落単)</option>
-                    </select>
-                    <button id="add-btn">追加</button>
+                <div class="form-group" style="flex-direction: column; gap: 10px;">
+                    <div>
+                        <label style="font-size: 13px; display:block; margin-bottom: 4px;">履修した科目を選択:</label>
+                        <select id="course-select" style="width: 100%;">
+                            </select>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <label style="font-size: 13px;">評価:</label>
+                        <select id="course-grade" style="flex-grow: 1;">
+                            <option value="S">S (4点)</option>
+                            <option value="A">A (3点)</option>
+                            <option value="B">B (2点)</option>
+                            <option value="C">C (1点)</option>
+                            <option value="D">D (0点・不合格)</option>
+                            <option value="E">E (0点・不合格)</option>
+                        </select>
+                        <button id="add-btn" style="padding: 8px 20px;">追加</button>
+                    </div>
                 </div>
             </div>
 
             <div class="card result-box">
-                <div>現在のGPA: <span id="gpa-display">0.00</span></div>
-                <div>修得済み単位数: <span id="earned-display">0</span></div>
-                <div>卒業までの不足単位数: <span id="remaining-display">0</span></div>
+                <div>現在の通算GPA: <span id="gpa-display">0.00</span></div>
+            </div>
+
+            <div class="card">
+                <h3>📊 卒業要件の充足状況</h3>
+                <div id="category-summary" style="font-size: 14px; display: flex; flex-direction: column; gap: 8px;">
+                    </div>
             </div>
 
             <h3>📋 履修科目一覧</h3>
@@ -52,7 +58,8 @@
                 <thead>
                     <tr>
                         <th>授業名</th>
-                        <th>単位数</th>
+                        <th>区分（群/必選択）</th>
+                        <th>単位</th>
                         <th>成績</th>
                         <th>操作</th>
                     </tr>
