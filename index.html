@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人成績確認アプリ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>📊 個人成績確認アプリ</h1>
+
+        <div id="password-screen" class="hidden">
+            <h3 id="pwd-title">パスワードを設定してください</h3>
+            <input type="password" id="pwd-input" placeholder="4桁の数字など">
+            <button id="pwd-btn">決定</button>
+            <p id="pwd-error" class="error"></p>
+        </div>
+
+        <div id="main-screen" class="hidden">
+            <div class="card">
+                <h3>🎯 必要単位数の設定</h3>
+                <label>必要（目標）単位数: </label>
+                <input type="number" id="req-credits-input" value="124" min="0" style="width: 60px;">
+            </div>
+
+            <div class="card">
+                <h3>✍️ 成績の追加</h3>
+                <div class="form-group">
+                    <input type="text" id="course-name" placeholder="授業名（例：英語I）">
+                    <input type="number" id="course-credits" placeholder="単位数" min="1" max="10" style="width: 70px;">
+                    <select id="course-grade">
+                        <option value="S">S (4点)</option>
+                        <option value="A">A (3点)</option>
+                        <option value="B">B (2点)</option>
+                        <option value="C">C (1点)</option>
+                        <option value="D">D (0点・落単)</option>
+                        <option value="E">E (0点・落単)</option>
+                    </select>
+                    <button id="add-btn">追加</button>
+                </div>
+            </div>
+
+            <div class="card result-box">
+                <div>現在のGPA: <span id="gpa-display">0.00</span></div>
+                <div>修得済み単位数: <span id="earned-display">0</span></div>
+                <div>卒業までの不足単位数: <span id="remaining-display">0</span></div>
+            </div>
+
+            <h3>📋 履修科目一覧</h3>
+            <table id="course-table">
+                <thead>
+                    <tr>
+                        <th>授業名</th>
+                        <th>単位数</th>
+                        <th>成績</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="course-list">
+                    </tbody>
+            </table>
+
+            <button id="reset-btn" class="danger-btn">データをすべてリセットする</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
