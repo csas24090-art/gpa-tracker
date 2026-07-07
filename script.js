@@ -1,50 +1,58 @@
 // ==========================================
 // 📚 応用情報工学科 科目マスタデータ (カタログ)
 // ==========================================
+// 区分（category）を「必修」と「選択」に細分化しました！
 const COURSE_MASTER = {
     // --- 全学共通・教養教育科目 ---
-    "自主創造の基礎": { credits: 2, category: "全学共通・教養教育科目", detail: "全学共通・必修" },
-    "倫理学": { credits: 2, category: "全学共通・教養教育科目", detail: "教養・Ⅰ群" },
-    "法学": { credits: 2, category: "全学共通・教養教育科目", detail: "教養・Ⅰ群" },
-    "日本国憲法": { credits: 2, category: "全学共通・教養教育科目", detail: "教養・Ⅰ群" },
-    "経済学": { credits: 2, category: "全学共通・教養教育科目", detail: "教養・Ⅱ群" },
-    "心理学": { credits: 2, category: "全学共通・教養教育科目", detail: "教養・Ⅱ群" },
-    "英語Ⅰ": { credits: 1, category: "全学共通・教養教育科目", detail: "外国語・必修" },
-    "英語Ⅱ": { credits: 1, category: "全学共通・教養教育科目", detail: "外国語・必修" },
-    "スポーツ科学演習Ⅰ": { credits: 1, category: "全学共通・教養教育科目", detail: "保健体育" },
+    "自主創造の基礎": { credits: 2, category: "教養・必修", detail: "全学共通" },
+    "英語Ⅰ": { credits: 1, category: "教養・必修", detail: "外国語" },
+    "英語Ⅱ": { credits: 1, category: "教養・必修", detail: "外国語" },
+    "スポーツ科学演習Ⅰ": { credits: 1, category: "教養・必修", detail: "保健体育" },
+    
+    "倫理学": { credits: 2, category: "教養 snuff・選択", detail: "Ⅰ群" },
+    "法学": { credits: 2, category: "教養・選択", detail: "Ⅰ群" },
+    "日本国憲法": { credits: 2, category: "教養・選択", detail: "Ⅰ群" },
+    "経済学": { credits: 2, category: "教養・選択", detail: "Ⅱ群" },
+    "心理学": { credits: 2, category: "教養 snuff・選択", detail: "Ⅱ群" },
 
     // --- 基礎教育科目 ---
-    "微分積分学Ⅰ": { credits: 2, category: "基礎教育科目", detail: "数理・必修" },
-    "微分積分学Ⅱ": { credits: 2, category: "基礎教育科目", detail: "数理・必修" },
-    "微分積分学演習Ⅰ": { credits: 1, category: "基礎教育科目", detail: "数理・必修" },
-    "線形代数学Ⅰ": { credits: 2, category: "基礎教育科目", detail: "数理・必修" },
-    "線形代数学Ⅱ": { credits: 2, category: "基礎教育科目", detail: "数理・必修" },
-    "物理学Ⅰ": { credits: 2, category: "基礎教育科目", detail: "自然科学・選択必修" },
-    "化学Ⅰ": { credits: 2, category: "基礎教育科目", detail: "自然科学・選択必修" },
-    "物理学実験": { credits: 1, category: "基礎教育科目", detail: "実験・必修" },
-    "化学実験": { credits: 1, category: "基礎教育科目", detail: "実験・必修" },
+    "微分積分学Ⅰ": { credits: 2, category: "基礎・必修", detail: "数理" },
+    "微分積分学Ⅱ": { credits: 2, category: "基礎・必修", detail: "数理" },
+    "微分積分学演習Ⅰ": { credits: 1, category: "基礎・必修", detail: "数理" },
+    "線形代数学Ⅰ": { credits: 2, category: "基礎 snuff・必修", detail: "数理" },
+    "線形代数学Ⅱ": { credits: 2, category: "基礎・必修", detail: "数理" },
+    "物理学実験": { credits: 1, category: "基礎・必修", detail: "実験" },
+    "化学実験": { credits: 1, category: "基礎・必修", detail: "実験" },
+    
+    "物理学Ⅰ": { credits: 2, category: "基礎・選択", detail: "自然科学・選択必修" },
+    "化学Ⅰ": { credits: 2, category: "基礎・選択", detail: "自然科学・選択必修" },
 
     // --- 専門教育科目 ---
-    "応用情報工学概論": { credits: 2, category: "専門教育科目", detail: "専門・必修" },
-    "情報リテラシー演習": { credits: 1, category: "専門教育科目", detail: "専門・必修" },
-    "Cプログラミング及び演習": { credits: 3, category: "専門教育科目", detail: "専門・必修" },
-    "データ構造とアルゴリズム": { credits: 2, category: "専門教育科目", detail: "専門・必修" },
-    "ロジック回路": { credits: 2, category: "専門教育科目", detail: "専門・必修" },
-    "離散数学": { credits: 2, category: "専門教育科目", detail: "専門・必修" },
-    "計算機工学": { credits: 2, category: "専門教育科目", detail: "専門・選択必修" },
-    "オブジェクト指向プログラミング": { credits: 2, category: "専門教育科目", detail: "専門・選択必修" },
-    "情報工学実験Ⅰ": { credits: 2, category: "専門教育科目", detail: "実験・必修" },
-    "情報工学実験Ⅱ": { credits: 2, category: "専門教育科目", detail: "実験・必修" },
-    "卒業研究": { credits: 6, category: "専門教育科目", detail: "専門・必修" }
+    "応用情報工学概論": { credits: 2, category: "専門・必修", detail: "必修" },
+    "情報リテラシー演習": { credits: 1, category: "専門・必修", detail: "必修" },
+    "Cプログラミング及び演習": { credits: 3, category: "専門・必修", detail: "必修" },
+    "データ構造とアルゴリズム": { credits: 2, category: "専門・必修", detail: "必修" },
+    "ロジック回路": { credits: 2, category: "専門・必修", detail: "必修" },
+    "離散数学": { credits: 2, category: "専門・必修", detail: "必修" },
+    "情報工学実験Ⅰ": { credits: 2, category: "専門・必修", detail: "実験必修" },
+    "情報工学実験Ⅱ": { credits: 2, category: "専門・必修", detail: "実験必修" },
+    "卒業研究": { credits: 6, category: "専門・必修", detail: "必修" },
+    
+    "計算機工学": { credits: 2, category: "専門・選択", detail: "選択必修/選択" },
+    "オブジェクト指向プログラミング": { credits: 2, category: "専門・選択", detail: "選択必修/選択" }
 };
 
 // ==========================================
-// 🎯 卒業要件の基準値 (最低必要単位数)
+// 🎯 卒業要件の基準値 (必修・選択の細分化)
 // ==========================================
+// ※要覧の最低基準をもとに仮設定しています。必要に応じてここの数値を調整できます。
 const GRADUATION_REQUIREMENTS = {
-    "全学共通・教養教育科目": 14,
-    "基礎教育科目": 20,
-    "専門教育科目": 90
+    "教養・必修": 5,
+    "教養・選択": 9,
+    "基礎 snuff・必修": 12,
+    "基礎・選択": 8,
+    "専門・必修": 22,
+    "専門 snuff・選択": 68
 };
 
 // --- アプリの状態管理 ---
@@ -70,11 +78,11 @@ function init() {
         const option = document.createElement('option');
         option.value = courseName;
         const info = COURSE_MASTER[courseName];
-        option.innerText = `${courseName} (${info.credits}単位 / ${info.detail})`;
+        option.innerText = `${courseName} (${info.credits}単位 / [${info.category}] ${info.detail})`;
         courseSelect.appendChild(option);
     }
 
-    const savedData = localStorage.getItem('gpa_app_data_v2');
+    const savedData = localStorage.getItem('gpa_app_data_v3'); // 保存の衝突を防ぐためv3に変更
     if (savedData) {
         appState = JSON.parse(savedData);
     }
@@ -117,10 +125,14 @@ function render() {
     let totalGP = 0;
     let totalCreditsForGPA = 0;
 
+    // 新しい5つの区分でカウンターを初期化
     let earnedCreditsByCategory = {
-        "全学共通・教養教育科目": 0,
-        "基礎教育科目": 0,
-        "専門教育科目": 0
+        "教養・必修": 0,
+        "教養・選択": 0,
+        "基礎・必修": 0,
+        "基礎・選択": 0,
+        "専門・必修": 0,
+        "専門・選択": 0
     };
 
     const tbody = document.getElementById('course-list');
@@ -198,12 +210,12 @@ window.deleteCourse = function(index) {
 };
 
 function saveToStorage() {
-    localStorage.setItem('gpa_app_data_v2', JSON.stringify(appState));
+    localStorage.setItem('gpa_app_data_v3', JSON.stringify(appState));
 }
 
 document.getElementById('reset-btn').addEventListener('click', () => {
     if (confirm("すべてのデータをリセットしますか？")) {
-        localStorage.removeItem('gpa_app_data_v2');
+        localStorage.removeItem('gpa_app_data_v3');
         location.reload();
     }
 });
