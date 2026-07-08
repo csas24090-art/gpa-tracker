@@ -3,50 +3,174 @@
 // ==========================================
 // ご指定いただいた新しい科目区分名に合わせて、categories をすべて再分類しました！
 const COURSE_MASTER = {
-    // --- 全学共通 ＆ 教育科目 ---
-    "自主創造の基礎": { credits: 2, categories: ["全学共通", "教育科目"], detail: "初年次教育" },
+    // --- 全学共通  ---
+    "自主創造の基礎": { credits: 2, categories: ["全学共通"], detail: "初年次教育" },
 
-    // --- 教育科目 ＆ 各群 ---
+    // --- 教育科目 ＆ Ⅰ群 ---
     "倫理学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "歴史学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "文学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
     "法学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・社会科学" },
-    "日本国憲法": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・社会科学" },
+    "社会学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "経済学": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "日本国憲法": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "ことばと文化": { credits: 2, categories: ["教育科目", "Ⅰ群"], detail: "教養・社会科学" },
+    "ドイツ語Ⅰ": { credits: 1, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "ドイツ語Ⅱ": { credits: 1, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "フランス語Ⅰ": { credits: 1, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "フランス語Ⅱ": { credits: 1, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "中国語Ⅰ": { credits: 1, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    "中国語Ⅱ": { credits: 1, categories: ["教育科目", "Ⅰ群"], detail: "教養・哲学" },
+    
+　　// --- 教育科目 ＆ Ⅱ群 ---
+    "哲学": { credits: 2, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "日本語表現の基礎": { credits: 1, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "クリティカル・シンキング": { credits: 1, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "感性芸術学": { credits: 2, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "心理学": { credits: 2, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "スポーツⅡ": { credits: 1, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "健康の科学": { credits: 1, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    "スポーツⅢ": { credits: 1, categories: ["教育科目", "Ⅱ群"], detail: "外国語" },
+    
+　　    // --- 教育科目 ＆ Ⅱ群 ＆ 必修 ---
+    "スポーツⅠ": { credits: 1, categories: ["教育科目", "Ⅱ群", "Ⅱ群必修"], detail: "外国語" },
+    
+    // --- 教育科目 ＆ Ⅲ群 ---
+   "技術者倫理": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "科学技術と人間": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "科学技術と経済": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "知的財産権論": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "科学技術史": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "現代物理学": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "地球環境化学": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "自然環境論": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+   "地理学": { credits: 2, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+    
+    // --- 教育科目 ＆ Ⅳ群 ---
+    "総合講座": { credits: 2, categories: ["教育科目", "Ⅳ群"], detail: "外国語" },
+    "教養基礎ゼミナール": { credits: 1, categories: ["教育科目", "Ⅲ群"], detail: "外国語" },
+    
+    // --- 基礎教育科目 ＆ 英語必修 ---
+    "英語ⅠA": { credits: 1, categories: ["基礎教育科目", "英語必修"], detail: "外国語" },
+    "英語ⅠB": { credits: 1, categories: ["基礎教育科目", "英語必修"], detail: "外国語" },
+    "英語ⅡA": { credits: 1, categories: ["基礎教育科目", "英語必修"], detail: "外国語" },
+    "英語ⅡB": { credits: 1, categories: ["基礎教育科目", "英語必修"], detail: "外国語" },
 
-    "英語Ⅰ": { credits: 1, categories: ["教育科目", "Ⅱ群", "Ⅱ群必修", "基礎教育科目", "基礎英語必修"], detail: "外国語" },
-    "英語Ⅱ": { credits: 1, categories: ["教育科目", "Ⅱ群", "Ⅱ群必修", "基礎教育科目", "基礎英語必修"], detail: "外国語" },
+    // --- 基礎教育科目 ＆ 英語選択 ---
+    "英語ⅢA": { credits: 1, categories: ["基礎教育科目", "英語選択"], detail: "外国語" },
+    "英語ⅢB": { credits: 1, categories: ["基礎教育科目", "英語選択"], detail: "外国語" },
+    "English Communication Ⅰ": { credits: 1, categories: ["基礎教育科目", "英語選択"], detail: "外国語" },
+    "English Communication Ⅱ": { credits: 1, categories: ["基礎教育科目", "英語選択"], detail: "外国語" },
+    
 
-    "経済学": { credits: 2, categories: ["教育科目", "Ⅱ群", "専門選択"], detail: "教養・社会" }, // 専門選択のメーターにも入る例
-    "心理学": { credits: 2, categories: ["教育科目", "Ⅱ群"], detail: "教養・人文" },
+    // --- 基礎教育科目 ＆ 英語特殊 ---
+    "英語特殊講義A": { credits: 1, categories: ["基礎教育科目", "英語特殊"], detail: "外国語" },
+    "英語特殊講義B": { credits: 1, categories: ["基礎教育科目", "英語特殊"], detail: "外国語" },
 
-    "スポーツ科学演習Ⅰ": { credits: 1, categories: ["教育科目", "Ⅲ群"], detail: "保健体育" },
+    // --- 基礎教育科目 ＆ 基礎科学 ---
+        // --- 基礎教育科目 ＆ 基礎科学 ＆ 数学---
+    "微分積分学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "微分積分学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "線形代数学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "線形代数学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "関数論Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "微分方程式Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "数理統計学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
+    "数理統計学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "数理必修" },
 
-    // --- 基礎教育科目 ＆ 各科学 ---
-    "微分積分学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
-    "微分積分学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
-    "微分積分学演習Ⅰ": { credits: 1, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
-    "線形代数学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
-    "線形代数学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学"], detail: "数理必修" },
 
-    "物理学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学", "基礎物理"], detail: "自然科学" },
-    "物理学実験": { credits: 1, categories: ["基礎教育科目", "基礎科学", "基礎物理"], detail: "実験必修" },
+        // --- 基礎教育科目 ＆ 基礎科学 ＆ 物理学---
+    "物理学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "数理必修" },
+    "物理学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "数理必修" },
+    "物理学Ⅰ演習": { credits: 1, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "数理必修" },
+    "物理学Ⅱ演習": { credits: 1, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "数理必修" },
+    "基礎物理学実験": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "数理必修" },
 
-    "化学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学", "基礎化学"], detail: "自然科学" },
-    "化学実験": { credits: 1, categories: ["基礎教育科目", "基礎科学", "基礎化学"], detail: "実験必修" },
 
-    // --- 専門科目 ＆ 必修・選択・卒論 ---
+        // --- 基礎教育科目 ＆ 基礎科学 ＆ 化学---
+    "物質の構造と状態": { credits: 2, categories: ["基礎教育科目", "基礎科学", "基礎化学"], detail: "自然科学" },
+    
+    // --- 専門科目 ＆ 必修 ---
+    "情報工学実験Ⅰ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
     "応用情報工学インセンティブ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
-    "応用情報工学概論": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
-    "情報リテラシー演習": { credits: 1, categories: ["専門科目", "専門必修"], detail: "学科必修" },
-    "Cプログラミング及び演習": { credits: 3, categories: ["専門科目", "専門必修"], detail: "学科必修" },
-    "データ構造とアルゴリズム": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
-    "ロジック回路": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "Cプログラム及び演習": { credits: 3, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "回路理論Ⅰ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "回路理論Ⅱ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "情報工学実験Ⅱ": { credits: 4, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "情報数学": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
     "離散数学": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
-    "情報工学実験Ⅰ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "実験必修" },
-    "情報工学実験Ⅱ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "実験必修" },
+    "情報工学実験Ⅲ": { credits: 4, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "応用情報工学キャリアデザイン": { credits: 1, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "応用情報工学総合演習": { credits: 1, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+    "応用数学": { credits: 2, categories: ["専門科目", "専門必修"], detail: "学科必修" },
+     
+    // --- 専門科目 ＆ 選択 ---
+    "情報基礎演習Ⅰ": { credits: 1, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報基礎演習Ⅱ": { credits: 1, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "論理回路": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "計算機工学Ⅰ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    
+    "計算機工学Ⅱ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "電気物理": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "数値解析": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "数値計算法": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "信号理論": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "キャリアデザイン入門": { credits: 1, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "代数概論Ⅰ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "代数概論Ⅱ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "幾何概論Ⅰ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "幾何概論Ⅱ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報社会と倫理": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報職業論": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
 
-    "計算機工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "専門選択" },
-    "オブジェクト指向プログラミング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "専門選択" },
+    "オブジェクト指向プログラミング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "Javaプログラミング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "データ構造とアルゴリズム及び演習": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報セキュリティ基礎": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報ネットワーク基礎": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
 
-    "卒業研究": { credits: 6, categories: ["専門科目", "専門必修", "卒論"], detail: "必修" }
+    "組込回路Ⅰ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "組込回路Ⅱ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報デバイス": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+
+    "情報理論": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "ソフトウェア工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "マネジメント工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "インターンシップ": { credits: 1, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+
+    "応用統計": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "画像処理": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "パターン認識": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "シミュレーション工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "データベース": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "ネットワークシステム": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "通信システム基礎": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "人工知能": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+
+    "組込システムⅠ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "オペレーティングシステム": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "制御理論": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "システム工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "ディジタル信号処理": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "計測システム": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "オプトエレクトロニクス": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+
+    "オートマトン": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "交通情報システム": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "環境情報": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "プロジェクト実習": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+
+    "データマイニング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "マルチメディア": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "コンピュータグラフィックス": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "情報通信システム": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "特殊無線概論": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+
+    "組込システムⅡ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    "ロボット工学": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科必修" },
+    
+    // --- 専門科目 ＆ 卒論 ---
+    "卒業研究": { credits: 6, categories: ["専門科目", "卒論"], detail: "必修" }
 };
 
 // ==========================================
