@@ -73,7 +73,7 @@ const COURSE_MASTER = {
     "関数論Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "基礎数学" },
     "微分方程式Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "基礎数学" },
     "数理統計学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "基礎数学" },
-    "数理統計学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "基礎数学 },
+    "数理統計学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎数学"], detail: "基礎数学" }, // 【修正点】閉じダブルクォーテーションを追加
 
     "物理学Ⅰ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "基礎物理" },
     "物理学Ⅱ": { credits: 2, categories: ["基礎教育科目", "基礎科学","基礎物理"], detail: "基礎物理" },
@@ -83,7 +83,12 @@ const COURSE_MASTER = {
 
     "物質の構造と状態": { credits: 2, categories: ["基礎教育科目", "基礎科学", "基礎化学"], detail: "基礎化学" },
     
-    // --- 専門科目 ＆ 必修 ｓｓts: 2, categories: ["専門科目", "専門必修"], detail: "1年前期必修" },
+    // --- 専門科目 ＆ 必修 ---
+    // 【修正点】崩れて消えてしまっていた専門必修科目の4つをきれいに復元しました
+    "情報工学実験Ⅰ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "1年前期必修" },
+    "応用情報工学インセンティブ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "1年前期必修" },
+    "Cプログラム及び演習": { credits: 3, categories: ["専門科目", "専門必修"], detail: "1年前期必修" },
+    "回路理論Ⅰ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "1年前期必修" },
     "回路理論Ⅱ": { credits: 2, categories: ["専門科目", "専門必修"], detail: "1年後期必修" },
     "情報工学実験Ⅱ": { credits: 4, categories: ["専門科目", "専門必修"], detail: "2年通年必修" },
     "情報数学": { credits: 2, categories: ["専門科目", "専門必修"], detail: "2年前期必修" },
@@ -159,22 +164,22 @@ const COURSE_MASTER = {
 const GRADUATION_REQUIREMENTS = {
     "全学共通": 2,
     "教育科目": 16,
-     "Ⅰ群": 6,
-     "Ⅱ群": 4,
-      "Ⅱ群必修": 1,
-     "Ⅲ群": 4,
-     "Ⅳ群": 0,
+    "Ⅰ群": 6,
+    "Ⅱ群": 4,
+    "Ⅱ群必修": 1,
+    "Ⅲ群": 4,
+    "Ⅳ群": 0,
     "基礎教育科目": 22,
-     "基礎英語必修": 4,
-     "基礎英語選択": 2,
-     "基礎英語特殊": 1,
-     "基礎科学": 10,
-     "基礎物理": 2,
-     "基礎化学": 2,
+    "基礎英語必修": 4,
+    "基礎英語選択": 2,
+    "基礎英語特殊": 1,
+    "基礎科学": 10,
+    "基礎物理": 2,
+    "基礎化学": 2,
     "専門科目": 86,
-     "専門必修": 27,
-     "専門選択": 53,
-     "卒論": 6
+    "専門必修": 27,
+    "専門選択": 53,
+    "卒論": 6
 };
 
 // --- アプリの状態管理 ---
@@ -186,12 +191,10 @@ const GRADE_POINTS = { 'S': 4, 'A': 3, 'B': 2, 'C': 1, 'D': 0, 'E': 0 };
 
 const courseSelect = document.getElementById('course-select');
 const mainScreen = document.getElementById('main-screen');
-// パスワード画面の要素は不要になりましたが、HTML側に残っていてもエラーが出ないよう非表示処理のみに留めます
 const pwdScreen = document.getElementById('password-screen');
 
 // --- 1. 初期化処理 ---
 function init() {
-    // 【修正点】ドロップダウンの表示形式に単位数(credits)と詳細(detail)を追加
     courseSelect.innerHTML = "";
     for (const courseName in COURSE_MASTER) {
         const option = document.createElement('option');
@@ -201,12 +204,11 @@ function init() {
         courseSelect.appendChild(option);
     }
 
-    const savedData = localStorage.getItem('gpa_app_data_v9'); // 鍵システム撤廃に伴いキーを更新
+    const savedData = localStorage.getItem('gpa_app_data_v9');
     if (savedData) {
         appState = JSON.parse(savedData);
     }
 
-    // 【修正点】鍵画面をスキップして、最初からメイン画面を表示
     if (pwdScreen) pwdScreen.classList.add('hidden');
     if (mainScreen) mainScreen.classList.remove('hidden');
     
