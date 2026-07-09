@@ -205,7 +205,7 @@ function init() {
         const option = document.createElement('option');
         option.value = courseName;
         const info = COURSE_MASTER[courseName];
-        option.innerText = `${courseName} (${info.credits}単位/${info.detail})`;
+        option.innerText = `${courseName} (${info.credits}単位)`;//増やしたいとこ
         courseSelect.appendChild(option);
     }
 
