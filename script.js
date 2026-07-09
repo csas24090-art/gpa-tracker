@@ -117,7 +117,7 @@ const COURSE_MASTER = {
     "情報職業論": { credits: 2, categories: ["専門科目", "専門選択"], detail: "学科選択" },
     "オブジェクト指向プログラミング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
     "Javaプログラミング": { credits: 2, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
-    "データ構造とアルゴリズム及び演習": { credits: 2, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
+    "データ構造とアルゴリズム及び演習": { credits: 3, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
     "情報セキュリティ基礎": { credits: 2, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
     "情報ネットワーク基礎": { credits: 2, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
     "組込回路Ⅰ": { credits: 2, categories: ["専門科目", "専門選択"], detail: "2年学科選択" },
