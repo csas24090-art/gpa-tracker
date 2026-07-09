@@ -1,8 +1,9 @@
 // ==========================================
 // 📚 応用情報工学科 科目マスタデータ (カタログ)
 // ==========================================
+// 英語科目のカテゴリ名を GRADUATION_REQUIREMENTS の表記（基礎英語必修など）と完全に一致させました！
 const COURSE_MASTER = {
-    // --- 全学共通 ---
+     // --- 全学共通 ---
     "自主創造の基礎": { credits: 2, categories: ["全学共通"], detail: "全学共通" },
 
     // --- 教育科目 ＆ Ⅰ群 ---
@@ -183,14 +184,19 @@ const GRADUATION_REQUIREMENTS = {
 
 // --- アプリの状態管理 ---
 let appState = {
+    password: "",
     courses: []
 };
 
 const GRADE_POINTS = { 'S': 4, 'A': 3, 'B': 2, 'C': 1, 'D': 0, 'E': 0 };
 
-const courseSelect = document.getElementById('course-select');
-const mainScreen = document.getElementById('main-screen');
 const pwdScreen = document.getElementById('password-screen');
+const mainScreen = document.getElementById('main-screen');
+const pwdTitle = document.getElementById('pwd-title');
+const pwdInput = document.getElementById('pwd-input');
+const pwdBtn = document.getElementById('pwd-btn');
+const pwdError = document.getElementById('pwd-error');
+const courseSelect = document.getElementById('course-select');
 
 // --- 1. 初期化処理 ---
 function init() {
@@ -199,47 +205,53 @@ function init() {
         const option = document.createElement('option');
         option.value = courseName;
         const info = COURSE_MASTER[courseName];
-        option.innerText = `${courseName} (${info.credits}単位 / ${info.detail})`;
+        option.innerText = `${courseName} (${info.credits}単位)`;
         courseSelect.appendChild(option);
     }
 
-    const savedData = localStorage.getItem('gpa_app_data_v9');
+    const savedData = localStorage.getItem('gpa_app_data_v8'); // 仕様変更のため保存キーをv8に更新
     if (savedData) {
         appState = JSON.parse(savedData);
     }
 
-    // 【修正点】鍵画面をふたたび有効化（メイン画面は最初は隠す）
-    if (pwdScreen) pwdScreen.classList.remove('hidden');
-    if (mainScreen) mainScreen.classList.add('hidden');
-    
-    render();
-}
-
-// 【修正点】鍵機能（パスワード認証）のロジックを再実装
-if (document.getElementById('login-btn')) {
-    document.getElementById('login-btn').addEventListener('click', checkPassword);
-}
-if (document.getElementById('password-input')) {
-    document.getElementById('password-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') checkPassword();
-    });
-}
-
-function checkPassword() {
-    const input = document.getElementById('password-input').value;
-    if (input === "1234") { // パスワードは「1234」
-        if (pwdScreen) pwdScreen.classList.add('hidden');
-        if (mainScreen) mainScreen.classList.remove('hidden');
+    if (!appState.password) {
+        pwdTitle.innerText = "🔑 初回設定: パスワードを決めてください";
+        pwdScreen.classList.remove('hidden');
     } else {
-        alert("パスワードが違います。");
+        pwdTitle.innerText = "🔒 パスワードを入力してください";
+        pwdScreen.classList.remove('hidden');
     }
 }
 
-// --- 2. 計算 ＆ 画面の再描画 ---
+// --- 2. パスワード認証 ---
+pwdBtn.addEventListener('click', () => {
+    const inputVal = pwdInput.value.trim();
+    if (!inputVal) { pwdError.innerText = "パスワードを入力してください。"; return; }
+
+    if (!appState.password) {
+        appState.password = btoa(inputVal);
+        saveToStorage();
+        enterMainScreen();
+    } else {
+        if (btoa(inputVal) === appState.password) {
+            enterMainScreen();
+        } else {
+            pwdError.innerText = "パスワードが違います！";
+        }
+    }
+});
+
+function enterMainScreen() {
+    pwdScreen.classList.add('hidden');
+    mainScreen.classList.remove('hidden');
+    render();
+}
+
+// --- 3. 計算 ＆ 画面の再描画 ---
 function render() {
     let totalGP = 0;
-    let totalCreditsForGPA = 0;
-    let grandTotalEarned = 0;
+    let totalCreditsForGPA = 0; // GPA計算の分母（不可を含める）
+    let grandTotalEarned = 0;   // 実際に修得した合計単位（D・Eは含めない）
 
     let earnedCreditsByCategory = {};
     for (const category in GRADUATION_REQUIREMENTS) {
@@ -255,9 +267,11 @@ function render() {
 
         const gp = GRADE_POINTS[savedCourse.grade];
         
+        // 【修正点】成績にかかわらず（DやEであっても）、すべての授業の単位数をGPA計算の分母に加算する
         totalGP += gp * masterInfo.credits;
         totalCreditsForGPA += masterInfo.credits;
 
+        // 【要件判定】S, A, B, C の合格者のみ、修得単位としてカウントする
         if (savedCourse.grade !== 'D' && savedCourse.grade !== 'E') {
             grandTotalEarned += masterInfo.credits;
             
@@ -324,7 +338,7 @@ function render() {
     }
 }
 
-// --- 3. データの追加・削除・保存 ---
+// --- 4. データの追加・削除・保存 ---
 document.getElementById('add-btn').addEventListener('click', () => {
     const name = courseSelect.value;
     const grade = document.getElementById('course-grade').value;
@@ -343,12 +357,12 @@ window.deleteCourse = function(index) {
 };
 
 function saveToStorage() {
-    localStorage.setItem('gpa_app_data_v9', JSON.stringify(appState));
+    localStorage.setItem('gpa_app_data_v8', JSON.stringify(appState));
 }
 
 document.getElementById('reset-btn').addEventListener('click', () => {
     if (confirm("すべてのデータをリセットしますか？")) {
-        localStorage.removeItem('gpa_app_data_v9');
+        localStorage.removeItem('gpa_app_data_v8');
         location.reload();
     }
 });
