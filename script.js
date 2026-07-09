@@ -205,11 +205,12 @@ function init() {
         const option = document.createElement('option');
         option.value = courseName;
         const info = COURSE_MASTER[courseName];
-        option.innerText = `${courseName} (${info.credits}単位)`;
+        // 【修正点】ドロップダウンに「単位」と「detail」を表示するように変更
+        option.innerText = `${courseName} (${info.credits}単位 / ${info.detail})`;
         courseSelect.appendChild(option);
     }
 
-    const savedData = localStorage.getItem('gpa_app_data_v8'); // 仕様変更のため保存キーをv8に更新
+    const savedData = localStorage.getItem('gpa_app_data_v8');
     if (savedData) {
         appState = JSON.parse(savedData);
     }
@@ -250,8 +251,8 @@ function enterMainScreen() {
 // --- 3. 計算 ＆ 画面の再描画 ---
 function render() {
     let totalGP = 0;
-    let totalCreditsForGPA = 0; // GPA計算の分母（不可を含める）
-    let grandTotalEarned = 0;   // 実際に修得した合計単位（D・Eは含めない）
+    let totalCreditsForGPA = 0;
+    let grandTotalEarned = 0;
 
     let earnedCreditsByCategory = {};
     for (const category in GRADUATION_REQUIREMENTS) {
@@ -267,11 +268,9 @@ function render() {
 
         const gp = GRADE_POINTS[savedCourse.grade];
         
-        // 【修正点】成績にかかわらず（DやEであっても）、すべての授業の単位数をGPA計算の分母に加算する
         totalGP += gp * masterInfo.credits;
         totalCreditsForGPA += masterInfo.credits;
 
-        // 【要件判定】S, A, B, C の合格者のみ、修得単位としてカウントする
         if (savedCourse.grade !== 'D' && savedCourse.grade !== 'E') {
             grandTotalEarned += masterInfo.credits;
             
